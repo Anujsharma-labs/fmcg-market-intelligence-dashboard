@@ -4,7 +4,7 @@ def run_pipeline():
     import pandas as pd
 
     import streamlit as st
-    GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
+    API_KEY = st.secrets["GEMINI_API_KEY"]
     from llm_filter import is_relevant
     from newsletter import generate_newsletter
     from preprocess import (
