@@ -4,7 +4,7 @@ def run_pipeline():
     import pandas as pd
 
     import streamlit as st
-    API_KEY = st.secrets["GEMINI_API_KEY"]
+    API_KEY = st.secrets["API_KEY"]
     from llm_filter import is_relevant
     from newsletter import generate_newsletter
     from preprocess import (
@@ -39,6 +39,12 @@ def run_pipeline():
 
     # JSON -> Python Dictionary
     data = response.json()
+
+    print("Status Code:", response.status_code)
+    print("Response:", data)
+
+    if "articles" not in data:
+     raise Exception(data)
 
     # Create DataFrame
     news = []
