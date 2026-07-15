@@ -2,9 +2,10 @@ def run_pipeline():
 
     import requests
     import pandas as pd
-
     import streamlit as st
+
     API_KEY = st.secrets["API_KEY"]
+
     from llm_filter import is_relevant
     from newsletter import generate_newsletter
     from preprocess import (
@@ -19,7 +20,7 @@ def run_pipeline():
     # Query Parameters
     params = {
         "q": "FMCG",
-        "pageSize": 100,
+        "pageSize": 5,
         "language": "en"
     }
 
@@ -43,8 +44,11 @@ def run_pipeline():
     print("Status Code:", response.status_code)
     print("Response:", data)
 
+    if response.status_code != 200:
+        raise Exception(f"HTTP Error: {response.status_code} - {data}")
+
     if "articles" not in data:
-     raise Exception(data)
+        raise Exception(f"NewsAPI Response: {data}")
 
     # Create DataFrame
     news = []
@@ -88,7 +92,7 @@ def run_pipeline():
     print("Relevant Articles:", len(relevant_df))
 
     # Credibility Score
-    ##relevant_df = add_credibility_score(relevant_df)
+    # relevant_df = add_credibility_score(relevant_df)
 
     # Generate Newsletter
     newsletter = generate_newsletter(relevant_df)
