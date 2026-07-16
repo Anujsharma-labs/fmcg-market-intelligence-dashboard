@@ -50,7 +50,7 @@ fmcg-market-intelligence-dashboard/
 Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/fmcg-market-intelligence-dashboard.git
+git clone https://github.com/Anujsharma-labs/fmcg-market-intelligence-dashboard.git
 ```
 
 Move into the project directory
@@ -72,9 +72,10 @@ pip install -r requirements.txt
 Create a file named **config.py**
 
 ```python
-API_KEY = "YOUR_NEWS_API_KEY"
+Create a `.streamlit/secrets.toml` file:
 
-GEMINI_API_KEY = "YOUR_GEMINI_API_KEY"
+API_KEY="YOUR_NEWS_API_KEY"
+GEMINI_API_KEY="YOUR_GEMINI_API_KEY"
 ```
 
 ---
@@ -115,11 +116,16 @@ Streamlit Dashboard
 
 ## 📸 Dashboard
 
-<img width="100%" src="dashboard.png">
+## 📸 Dashboard
 
-> Replace `dashboard.png` with your dashboard screenshot after deployment.
+<img width="100%" src="Dashboard/image.png">
 
 ---
+
+## 🌐 Live Demo
+
+Streamlit App:
+https://fmcg-market-intelligence.streamlit.app/
 
 ## ⚠️ Note
 
@@ -135,9 +141,9 @@ Machine Learning & Data Science Enthusiast
 
 📧 Email: anuj.sharma.work18@gmail.com
 
-🔗 LinkedIn: https://linkedin.com/in/your-profile
+🔗 LinkedIn: https://www.linkedin.com/in/anuj-sharma-362063333
 
-💻 GitHub: https://github.com/your-username
+💻 GitHub: [https://github.com/your-username](https://github.com/Anujsharma-labs)
 
 ---
 
