@@ -19,9 +19,6 @@ Title:
 Source:
 {row["source"]}
 
-#Credibility Score:
-#{row["credibility_score"]}
-
 Description:
 {row["description"]}
 """
@@ -60,5 +57,5 @@ Articles:
         return response.text
 
     except Exception as e:
-        print(f"Gemini Error: {e}")
-        return "Newsletter generation failed."
+         import traceback
+         return f"Newsletter generation failed.\n\n{traceback.format_exc()}"
