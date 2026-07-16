@@ -38,11 +38,7 @@ def run_pipeline():
 
     print("Status Code:", response.status_code)
 
-    # JSON -> Python Dictionary
     data = response.json()
-
-    print("Status Code:", response.status_code)
-    print("Response:", data)
 
     if response.status_code != 200:
         raise Exception(f"HTTP Error: {response.status_code} - {data}")
@@ -54,6 +50,7 @@ def run_pipeline():
     news = []
 
     for article in data["articles"]:
+
         news.append({
             "source": article["source"]["name"],
             "title": article["title"],
@@ -63,9 +60,13 @@ def run_pipeline():
         })
 
     df = pd.DataFrame(news)
+
     df.to_csv("data/news.csv", index=False)
 
+    # -----------------------------
     # Remove Duplicates
+    # -----------------------------
+
     print("Original Articles:", len(df))
 
     clean_df = remove_exact_duplicates(df)
@@ -76,30 +77,40 @@ def run_pipeline():
 
     clean_df.to_csv("data/clean_news.csv", index=False)
 
-    # LLM Filtering
+    # -----------------------------
+    # Keyword Filtering
+    # -----------------------------
+
     relevant_news = []
 
     for _, row in clean_df.iterrows():
 
-        if is_relevant(
-            row["title"],
-            row["description"]
-        ):
+        title = row["title"] if pd.notna(row["title"]) else ""
+        description = row["description"] if pd.notna(row["description"]) else ""
+
+        if is_relevant(title, description):
             relevant_news.append(row)
 
     relevant_df = pd.DataFrame(relevant_news)
 
     print("Relevant Articles:", len(relevant_df))
 
-    # Credibility Score
-    # relevant_df = add_credibility_score(relevant_df)
+    # If nothing relevant found
+    if relevant_df.empty:
+        return "# No relevant FMCG news found today."
 
+    # -----------------------------
+    # Credibility Score
+    # -----------------------------
+
+    relevant_df = add_credibility_score(relevant_df)
+
+    # -----------------------------
     # Generate Newsletter
+    # -----------------------------
+
     newsletter = generate_newsletter(relevant_df)
 
-    print(newsletter)
-
-    # Save Newsletter
     with open("newsletter.md", "w", encoding="utf-8") as f:
         f.write(newsletter)
 
