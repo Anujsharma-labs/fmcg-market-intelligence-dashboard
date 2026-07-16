@@ -144,7 +144,7 @@ with st.sidebar:
     st.divider()
 
     st.markdown("### 🤖 AI Model")
-    st.success("Gemini 2.5 Flash Lite")
+    st.success("Gemini 3.5 Flash")
 
     st.markdown("### 📰 News Source")
     st.info("NewsAPI")
