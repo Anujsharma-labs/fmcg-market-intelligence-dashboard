@@ -116,8 +116,6 @@ Streamlit Dashboard
 
 ## 📸 Dashboard
 
-## 📸 Dashboard
-
 <img width="100%" src="Dashboard/image.png">
 
 ---
