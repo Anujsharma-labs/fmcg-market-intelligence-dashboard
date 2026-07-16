@@ -141,7 +141,7 @@ Machine Learning & Data Science Enthusiast
 
 🔗 LinkedIn: https://www.linkedin.com/in/anuj-sharma-362063333
 
-💻 GitHub: [https://github.com/your-username](https://github.com/Anujsharma-labs)
+💻 GitHub: https://github.com/Anujsharma-labs
 
 ---
 
